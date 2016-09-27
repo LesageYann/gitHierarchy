@@ -1,0 +1,25 @@
+<import-file>
+  <label> file to import : </label>
+  <input id="loadFilename" type="file" />
+  <button onclick={readImport}>load</button>
+  
+  self= this;
+  
+  readImport(){
+    var file = self.loadFilename.files[0];
+    console.log(self.loadFilename.files[0]);
+    var reader = new FileReader();
+            
+    reader.onloadend = function(e){
+      console.log('json',e.target.result);
+      usersModel = JSON.parse( e.target.result);
+      import(usersModel);
+    };
+           
+    reader.readAsText(file, 'UTF-8');
+  }
+  
+  import(userModel){
+    riot.mount(self,'visu',{elements: usersModel});
+  }
+</import-file>
