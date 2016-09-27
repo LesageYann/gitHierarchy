@@ -1,0 +1,8 @@
+<hierarchy>
+  <div id='visu'></div>
+  
+  self= this;
+  self.on('mount',function(){
+    riot.mount(self.visu,'visu',{elements:self.opts.usersModel})
+  });
+</hierarchy>

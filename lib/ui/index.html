@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./public/resources/marmottajax.min.js"></script>
+    <script src="./public/resources/jscolor.js"></script>
+    <script src="./public/resources/FileSaver/FileSaver.js"></script>
+    <script src="./public/resources/cytoscape/cytoscape.js"></script>
+    <script src="./public/resources/riot/riot%2Bcompiler.js"></script>
+  </head>
+  <body>
+    <import-file></import-file>
+    <script src="../public/tags/visu.html" type="riot/tag"></script>
+    <script src="../public/tags/import-file.html" type="riot/tag"></script>
+    <script>
+      riot.compile(function(){
+//      routerRoot = document.getElementById('main');
+//      riot.mount('search-bar', opts);
+//      riot.mount('nav-button', opts);
+//      riot.route('/home', function () {
+//        riot.mount('#main', 'home', opts);
+//      });
+//      riot.route.start(true);
+      tag = riot.mount('hierarchy',{})[0];
+    });
+    </script>
+  </body>
+</html>
