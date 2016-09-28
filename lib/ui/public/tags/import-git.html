@@ -1,22 +1,29 @@
 <import-git>
-  <label> file to import : </label>
-  <input id="loadFilename" type="file" />
-  <button onclick={readImport}>load</button>
+  <label> repository : </label>
+  <input id="repo" type="text" />
+  <label> as user : </label>
+  <input id="user" type="text" />
+  <label> password : </label>
+  <input id="pwd" type="password" />
+  <button onclick={gitResquest}>load</button>
   
   self= this;
   
+  getRepo(){
+    return self.repo.value;
+  }
+  
   gitResquest(){
-    var file = self.loadFilename.files[0];
-    console.log(self.loadFilename.files[0]);
-    var reader = new FileReader();
-            
-    reader.onloadend = function(e){
-      console.log('json',e.target.result);
-      usersModel = JSON.parse( e.target.result);
-      import(usersModel);
-    };
-           
-    reader.readAsText(file, 'UTF-8');
+    marmottajax({url: "/github/connect", method: "get", 
+        parameters: {username:self.user.value,password:self.pwd.value}}).then(
+      function () {
+        marmottajax({url: "/github/collaborators", method: "get", 
+            parameters: {repo:self.getRepo()}}).then(
+          function (data) {
+            console.log(data);
+            import(JSON.parse(data) );
+        })
+    })
   }
   
   import(userModel){

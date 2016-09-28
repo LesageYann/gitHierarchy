@@ -1,0 +1,12 @@
+<import>
+  <div id="main"></div>
+  <button onclick={selectImport} data-type="import-git">import from git</button>
+  <button onclick={selectImport} data-type="import-file">import from file</button>
+  
+  self= this;
+  
+  selectImport(e){
+    console.log(e);
+    riot.mount(self.main,e.target.dataset.type);
+  }
+</import>
