@@ -1,0 +1,45 @@
+<visu-node>
+  <div class="node-body" name="node" >
+    <div class="tools">
+      <div><button class="edit" onclick={supervise=!supervise}/>
+        <ul if={supervise}>
+          <li each={opts.els} onclick={accSupervise(this)}>{name}</li>
+        </ul></div>
+      <button class="edit" onclick={mode}/></div>
+    <label>name</label>:
+    <span>{opts.data.id}</span>
+    <div if={!edit}>
+      <label>responsability</label>:<br />
+      <span>{opts.data.resp}</span><br />
+      <label>responsability on dir</label>:<br />
+      <span>{opts.data.dir}</span><br />
+    </div>
+    <div if={edit}>
+      <label>responsability</label>:<br />
+      <input type="text" name="resp" value={opts.data.resp}/><br />
+      <label>responsability on dir</label>:<br />
+      <input type="text" name="resp" value={opts.data.dir} placeholder=" 'link1','link/*/2',..."/><br />
+      <button onclick={mode}>cancel</button>
+      <button onclick={validate}>change</button>
+    </div>
+  </div>
+  this.on('mount', function(){
+    this.edit=false;
+    console.log("mount", self.opts);
+    console.log("self.parent", self.parent)
+  });
+  this.mode= function(){
+    this.edit= !this.edit;
+    this.update();
+  };
+  this.validate=function(){
+    self.opts.data.resp=self.resp.value;
+    this.edit=false;
+    this.update();
+  };
+  
+  accSupervise(el){
+    console.log(el)
+  }
+
+</visu-node>

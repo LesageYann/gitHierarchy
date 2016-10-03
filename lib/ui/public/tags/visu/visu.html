@@ -1,0 +1,21 @@
+<visu>
+  <div id="visuContent"></div>
+  this.on('mount', function(){
+      this.elements=[]
+      this.init();
+  });
+  init(){
+    create= this.createNode;
+    root =this.visuContent;
+    this.opts.elements.map(function(elem){
+      create(elem, root);
+    });
+  }
+  createNode(elem,root){
+    console.log("self.createNode",elem, root);
+    div = document.createElement('div');
+    root.appendChild(div);
+    this.elements.push({root:div, name: elem.data.id})
+    riot.mount(div,'visu-node',{el:elem, els: this.elements});
+  }
+</visu>

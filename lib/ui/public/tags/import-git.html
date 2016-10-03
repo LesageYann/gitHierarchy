@@ -20,13 +20,13 @@
         marmottajax({url: "/github/collaborators", method: "get", 
             parameters: {repo:self.getRepo()}}).then(
           function (data) {
-            console.log(data);
-            import(JSON.parse(data) );
+            console.log(JSON.parse(data));
+            self.import(JSON.parse(data) );
         })
     })
   }
   
-  import(userModel){
-    riot.mount(self,'visu',{elements: usersModel});
+  import(usersModel){
+    riot.mount(self.root,'visu',{elements: usersModel});
   }
 </import-git>
